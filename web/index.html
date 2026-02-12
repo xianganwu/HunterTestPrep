@@ -3,80 +3,545 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HunterTestPrep - Hunter College Admission Test Preparation</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>HunterTestPrep - Practice for Hunter College Admission</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/quiz.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <h1>HunterTestPrep</h1>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <a href="#" class="logo" onclick="app.showHome()">
+                    <span class="logo-icon">H</span>
+                    <span class="logo-text">HunterTestPrep</span>
+                </a>
+                <nav class="nav" id="main-nav">
+                    <a href="#" onclick="app.showHome()" class="nav-link active">Home</a>
+                    <a href="#" onclick="app.showProgress()" class="nav-link">My Progress</a>
+                    <a href="#" onclick="app.showResources()" class="nav-link">Resources</a>
+                </nav>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#practice">Practice</a></li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-        </nav>
-    </header>
+        </header>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h2>Prepare for the Hunter College Entrance Exam</h2>
-                <p>Free practice questions and resources for HCHS and HCES admissions</p>
-                <a href="#practice" class="cta-button">Start Practicing</a>
+        <!-- Main Content Area -->
+        <main class="main-content">
+
+            <!-- Home Screen -->
+            <section id="home-screen" class="screen active">
+                <div class="hero">
+                    <h1>Prepare for the Hunter Entrance Exam</h1>
+                    <p class="hero-subtitle">Practice with questions designed to match the actual test format</p>
+                </div>
+
+                <div class="practice-options">
+                    <h2>Choose Your Practice Mode</h2>
+
+                    <div class="options-grid">
+                        <!-- Full Practice Test -->
+                        <div class="option-card featured" onclick="app.startQuiz('full')">
+                            <div class="option-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12,6 12,12 16,14"/>
+                                </svg>
+                            </div>
+                            <h3>Full Practice Test</h3>
+                            <p>Timed test with randomized questions from all sections</p>
+                            <div class="option-meta">
+                                <span class="badge">50 Questions</span>
+                                <span class="badge">90 Minutes</span>
+                            </div>
+                        </div>
+
+                        <!-- Reading Comprehension -->
+                        <div class="option-card" onclick="app.startQuiz('reading')">
+                            <div class="option-icon reading">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                                </svg>
+                            </div>
+                            <h3>Reading Comprehension</h3>
+                            <p>Passage analysis, vocabulary, and inference questions</p>
+                            <div class="option-meta">
+                                <span class="badge">48 Questions</span>
+                                <span class="badge">Untimed</span>
+                            </div>
+                        </div>
+
+                        <!-- Mathematics -->
+                        <div class="option-card" onclick="app.startQuiz('math')">
+                            <div class="option-icon math">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="2" x2="12" y2="22"/>
+                                    <line x1="2" y1="12" x2="22" y2="12"/>
+                                    <line x1="5" y1="5" x2="19" y2="19"/>
+                                    <line x1="19" y1="5" x2="5" y2="19"/>
+                                </svg>
+                            </div>
+                            <h3>Mathematics</h3>
+                            <p>Arithmetic, algebra, geometry, and word problems</p>
+                            <div class="option-meta">
+                                <span class="badge">80 Questions</span>
+                                <span class="badge">Untimed</span>
+                            </div>
+                        </div>
+
+                        <!-- Quantitative Reasoning -->
+                        <div class="option-card" onclick="app.startQuiz('quantitative')">
+                            <div class="option-icon quantitative">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="7"/>
+                                    <rect x="14" y="3" width="7" height="7"/>
+                                    <rect x="14" y="14" width="7" height="7"/>
+                                    <rect x="3" y="14" width="7" height="7"/>
+                                </svg>
+                            </div>
+                            <h3>Quantitative Reasoning</h3>
+                            <p>Comparisons, patterns, and logical reasoning</p>
+                            <div class="option-meta">
+                                <span class="badge">72 Questions</span>
+                                <span class="badge">Untimed</span>
+                            </div>
+                        </div>
+
+                        <!-- Writing Practice -->
+                        <div class="option-card" onclick="app.startQuiz('writing')">
+                            <div class="option-icon writing">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                                    <path d="M2 2l7.586 7.586"/>
+                                    <circle cx="11" cy="11" r="2"/>
+                                </svg>
+                            </div>
+                            <h3>Writing Practice</h3>
+                            <p>Essay prompts with sample responses and tips</p>
+                            <div class="option-meta">
+                                <span class="badge">12 Prompts</span>
+                                <span class="badge">40 Min Each</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Overview -->
+                <div class="stats-overview" id="stats-overview">
+                    <h2>Your Progress</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="stat-total">0</div>
+                            <div class="stat-label">Questions Answered</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="stat-correct">0%</div>
+                            <div class="stat-label">Accuracy Rate</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="stat-streak">0</div>
+                            <div class="stat-label">Current Streak</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="stat-time">0h</div>
+                            <div class="stat-label">Practice Time</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz Setup Screen -->
+            <section id="setup-screen" class="screen">
+                <div class="setup-container">
+                    <button class="back-btn" onclick="app.showHome()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        Back
+                    </button>
+
+                    <h2 id="setup-title">Configure Your Practice</h2>
+
+                    <div class="setup-options">
+                        <div class="setup-group">
+                            <label>Number of Questions</label>
+                            <div class="button-group" id="question-count-group">
+                                <button class="option-btn" data-value="10">10</button>
+                                <button class="option-btn active" data-value="25">25</button>
+                                <button class="option-btn" data-value="50">50</button>
+                                <button class="option-btn" data-value="all">All</button>
+                            </div>
+                        </div>
+
+                        <div class="setup-group">
+                            <label>Time Limit</label>
+                            <div class="button-group" id="time-limit-group">
+                                <button class="option-btn" data-value="0">No Limit</button>
+                                <button class="option-btn" data-value="30">30 min</button>
+                                <button class="option-btn active" data-value="60">60 min</button>
+                                <button class="option-btn" data-value="90">90 min</button>
+                            </div>
+                        </div>
+
+                        <div class="setup-group">
+                            <label>Question Order</label>
+                            <div class="button-group" id="order-group">
+                                <button class="option-btn active" data-value="random">Randomized</button>
+                                <button class="option-btn" data-value="sequential">Sequential</button>
+                            </div>
+                        </div>
+
+                        <div class="setup-group">
+                            <label>Show Explanations</label>
+                            <div class="button-group" id="explanations-group">
+                                <button class="option-btn active" data-value="after">After Each Question</button>
+                                <button class="option-btn" data-value="end">At the End</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="start-btn" onclick="app.beginQuiz()">
+                        Start Practice
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Quiz Screen -->
+            <section id="quiz-screen" class="screen">
+                <!-- Quiz Header -->
+                <div class="quiz-header">
+                    <div class="quiz-info">
+                        <span class="quiz-category" id="quiz-category">Reading Comprehension</span>
+                        <span class="quiz-progress" id="quiz-progress">Question 1 of 25</span>
+                    </div>
+                    <div class="quiz-timer" id="quiz-timer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                        <span id="timer-display">60:00</span>
+                    </div>
+                    <button class="pause-btn" onclick="app.togglePause()" id="pause-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="6" y="4" width="4" height="16"/>
+                            <rect x="14" y="4" width="4" height="16"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+
+                <!-- Question Area -->
+                <div class="question-area">
+                    <!-- Passage (for reading comprehension) -->
+                    <div class="passage-container" id="passage-container">
+                        <div class="passage-header">
+                            <span>Passage</span>
+                            <button class="toggle-passage-btn" onclick="app.togglePassage()">
+                                <span>Collapse</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="18 15 12 9 6 15"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="passage-content" id="passage-content"></div>
+                    </div>
+
+                    <!-- Question -->
+                    <div class="question-container">
+                        <div class="question-number" id="question-number">Question 1</div>
+                        <div class="question-text" id="question-text"></div>
+
+                        <!-- Answer Options -->
+                        <div class="answer-options" id="answer-options"></div>
+
+                        <!-- Explanation (shown after answering) -->
+                        <div class="explanation-container" id="explanation-container">
+                            <div class="explanation-header">
+                                <span class="explanation-status" id="explanation-status"></span>
+                            </div>
+                            <div class="explanation-text" id="explanation-text"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Navigation -->
+                <div class="quiz-nav">
+                    <button class="nav-btn prev-btn" onclick="app.prevQuestion()" id="prev-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        Previous
+                    </button>
+
+                    <div class="question-dots" id="question-dots"></div>
+
+                    <button class="nav-btn next-btn" onclick="app.nextQuestion()" id="next-btn">
+                        Next
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Question Navigator (expandable) -->
+                <div class="question-navigator" id="question-navigator">
+                    <button class="navigator-toggle" onclick="app.toggleNavigator()">
+                        <span>Question Navigator</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </button>
+                    <div class="navigator-grid" id="navigator-grid"></div>
+                </div>
+            </section>
+
+            <!-- Results Screen -->
+            <section id="results-screen" class="screen">
+                <div class="results-container">
+                    <div class="results-header">
+                        <h2>Practice Complete!</h2>
+                        <p class="results-date" id="results-date"></p>
+                    </div>
+
+                    <div class="score-circle">
+                        <svg viewBox="0 0 120 120">
+                            <circle class="score-bg" cx="60" cy="60" r="54"/>
+                            <circle class="score-progress" id="score-circle" cx="60" cy="60" r="54"/>
+                        </svg>
+                        <div class="score-text">
+                            <span class="score-value" id="score-value">0</span>
+                            <span class="score-label">%</span>
+                        </div>
+                    </div>
+
+                    <div class="results-stats">
+                        <div class="result-stat">
+                            <span class="result-stat-value correct" id="result-correct">0</span>
+                            <span class="result-stat-label">Correct</span>
+                        </div>
+                        <div class="result-stat">
+                            <span class="result-stat-value incorrect" id="result-incorrect">0</span>
+                            <span class="result-stat-label">Incorrect</span>
+                        </div>
+                        <div class="result-stat">
+                            <span class="result-stat-value skipped" id="result-skipped">0</span>
+                            <span class="result-stat-label">Skipped</span>
+                        </div>
+                        <div class="result-stat">
+                            <span class="result-stat-value time" id="result-time">0:00</span>
+                            <span class="result-stat-label">Time Taken</span>
+                        </div>
+                    </div>
+
+                    <div class="category-breakdown" id="category-breakdown">
+                        <h3>Performance by Category</h3>
+                        <div class="breakdown-bars" id="breakdown-bars"></div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button class="action-btn primary" onclick="app.reviewAnswers()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                            Review Answers
+                        </button>
+                        <button class="action-btn" onclick="app.startQuiz(app.currentCategory)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 4v6h-6M1 20v-6h6"/>
+                                <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+                            </svg>
+                            Try Again
+                        </button>
+                        <button class="action-btn" onclick="app.showHome()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                                <polyline points="9,22 9,12 15,12 15,22"/>
+                            </svg>
+                            Back to Home
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Review Screen -->
+            <section id="review-screen" class="screen">
+                <div class="review-header">
+                    <button class="back-btn" onclick="app.showResults()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        Back to Results
+                    </button>
+                    <h2>Review Your Answers</h2>
+                    <div class="review-filters">
+                        <button class="filter-btn active" data-filter="all" onclick="app.filterReview('all')">All</button>
+                        <button class="filter-btn" data-filter="incorrect" onclick="app.filterReview('incorrect')">Incorrect</button>
+                        <button class="filter-btn" data-filter="skipped" onclick="app.filterReview('skipped')">Skipped</button>
+                    </div>
+                </div>
+                <div class="review-list" id="review-list"></div>
+            </section>
+
+            <!-- Writing Practice Screen -->
+            <section id="writing-screen" class="screen">
+                <div class="writing-container">
+                    <button class="back-btn" onclick="app.showHome()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        Back
+                    </button>
+
+                    <div class="writing-header">
+                        <h2>Writing Practice</h2>
+                        <div class="writing-timer" id="writing-timer">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <span id="writing-timer-display">40:00</span>
+                            <button class="timer-btn" onclick="app.toggleWritingTimer()" id="writing-timer-btn">Start</button>
+                        </div>
+                    </div>
+
+                    <div class="prompt-selector">
+                        <label>Select a Prompt:</label>
+                        <select id="prompt-select" onchange="app.selectPrompt()"></select>
+                    </div>
+
+                    <div class="writing-prompt" id="writing-prompt"></div>
+
+                    <div class="writing-area">
+                        <textarea id="writing-response" placeholder="Write your response here..."></textarea>
+                        <div class="word-count">
+                            <span id="word-count">0</span> words
+                        </div>
+                    </div>
+
+                    <div class="writing-tips">
+                        <h3>Writing Tips</h3>
+                        <ul>
+                            <li>Start with an engaging opening that hooks the reader</li>
+                            <li>Use specific details and sensory language</li>
+                            <li>Organize your ideas in clear paragraphs</li>
+                            <li>Show, don't just tell - use examples</li>
+                            <li>End with a meaningful conclusion</li>
+                            <li>Proofread for grammar and spelling</li>
+                        </ul>
+                    </div>
+
+                    <div class="sample-essay-toggle">
+                        <button onclick="app.toggleSampleEssay()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                            View Sample Response
+                        </button>
+                    </div>
+                    <div class="sample-essay" id="sample-essay"></div>
+                </div>
+            </section>
+
+            <!-- Progress Screen -->
+            <section id="progress-screen" class="screen">
+                <div class="progress-container">
+                    <h2>Your Progress</h2>
+
+                    <div class="progress-overview">
+                        <div class="progress-card">
+                            <h3>Overall Statistics</h3>
+                            <div class="progress-stats" id="progress-stats"></div>
+                        </div>
+
+                        <div class="progress-card">
+                            <h3>Performance by Category</h3>
+                            <div class="category-progress" id="category-progress"></div>
+                        </div>
+
+                        <div class="progress-card">
+                            <h3>Recent Sessions</h3>
+                            <div class="session-history" id="session-history"></div>
+                        </div>
+                    </div>
+
+                    <button class="clear-progress-btn" onclick="app.clearProgress()">
+                        Clear All Progress
+                    </button>
+                </div>
+            </section>
+
+            <!-- Resources Screen -->
+            <section id="resources-screen" class="screen">
+                <div class="resources-container">
+                    <h2>Study Resources</h2>
+
+                    <div class="resources-grid">
+                        <a href="https://www.hunterschools.org/high-school/admissions/entrance-exam-2026" target="_blank" class="resource-card">
+                            <h3>Official HCHS Information</h3>
+                            <p>Visit the official Hunter College High School admissions page</p>
+                        </a>
+                        <div class="resource-card" onclick="app.showTestFormat()">
+                            <h3>Test Format Guide</h3>
+                            <p>Learn about the exam structure and what to expect</p>
+                        </div>
+                        <div class="resource-card" onclick="app.showStrategies()">
+                            <h3>Test-Taking Strategies</h3>
+                            <p>Tips and techniques for each section</p>
+                        </div>
+                        <div class="resource-card" onclick="app.showHome()">
+                            <h3>Practice Questions</h3>
+                            <p>Start practicing with our question bank</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Pause Modal -->
+        <div class="modal" id="pause-modal">
+            <div class="modal-content">
+                <h3>Quiz Paused</h3>
+                <p>Your progress has been saved.</p>
+                <div class="modal-actions">
+                    <button onclick="app.togglePause()">Resume</button>
+                    <button onclick="app.endQuiz()" class="secondary">End Quiz</button>
+                </div>
             </div>
-        </section>
+        </div>
 
-        <section id="practice" class="practice-section">
-            <h2>Practice Sections</h2>
-            <div class="card-container">
-                <div class="card">
-                    <h3>Reading Comprehension</h3>
-                    <p>50 questions covering passage analysis, vocabulary, and inference</p>
-                    <a href="practice/reading.html" class="card-button">Practice Now</a>
-                </div>
-                <div class="card">
-                    <h3>Mathematics</h3>
-                    <p>47 questions on fractions, percents, geometry, and more</p>
-                    <a href="practice/math.html" class="card-button">Practice Now</a>
-                </div>
-                <div class="card">
-                    <h3>Quantitative Reasoning</h3>
-                    <p>37 questions testing logic, patterns, and comparisons</p>
-                    <a href="practice/quantitative.html" class="card-button">Practice Now</a>
-                </div>
-                <div class="card">
-                    <h3>Writing Practice</h3>
-                    <p>Essay prompts with sample responses and scoring guides</p>
-                    <a href="practice/writing.html" class="card-button">Practice Now</a>
+        <!-- Confirm End Modal -->
+        <div class="modal" id="confirm-end-modal">
+            <div class="modal-content">
+                <h3>End Quiz?</h3>
+                <p>Are you sure you want to end this quiz? Your current progress will be saved.</p>
+                <div class="modal-actions">
+                    <button onclick="app.closeModal('confirm-end-modal')">Continue Quiz</button>
+                    <button onclick="app.confirmEndQuiz()" class="secondary">End Quiz</button>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="resources" class="resources-section">
-            <h2>Study Resources</h2>
-            <ul class="resource-list">
-                <li><a href="resources/test-format.html">Test Format Guide</a></li>
-                <li><a href="resources/strategies.html">Test-Taking Strategies</a></li>
-                <li><a href="resources/timeline.html">Study Timeline</a></li>
-                <li><a href="https://www.hunterschools.org/high-school/admissions/entrance-exam-2026" target="_blank">Official HCHS Information</a></li>
-            </ul>
-        </section>
+        <!-- Footer -->
+        <footer class="footer">
+            <p>HunterTestPrep - For educational purposes only. Not affiliated with Hunter College Campus Schools.</p>
+        </footer>
+    </div>
 
-        <section id="about" class="about-section">
-            <h2>About This Project</h2>
-            <p>HunterTestPrep is a free, open-source resource for students preparing for Hunter College Campus Schools admission tests. This project is not affiliated with or endorsed by Hunter College Campus Schools or CUNY.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 HunterTestPrep | <a href="https://github.com/HunterTestPrep">GitHub</a></p>
-        <p class="disclaimer">For educational purposes only. Not affiliated with Hunter College Campus Schools.</p>
-    </footer>
-
-    <script src="app.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
