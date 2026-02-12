@@ -1,0 +1,51 @@
+{
+  "app": {
+    "name": "HunterTestPrep",
+    "version": "1.0.0",
+    "description": "Hunter College Campus Schools Test Preparation"
+  },
+  "database": {
+    "path": "./data/questions.json",
+    "backup_enabled": true
+  },
+  "quiz": {
+    "default_time_limit_minutes": 60,
+    "questions_per_session": 25,
+    "show_explanations": true,
+    "shuffle_questions": true,
+    "shuffle_answers": true
+  },
+  "sections": {
+    "reading_comprehension": {
+      "enabled": true,
+      "time_limit_minutes": 70,
+      "question_count": 50
+    },
+    "mathematics": {
+      "enabled": true,
+      "time_limit_minutes": 40,
+      "question_count": 47
+    },
+    "quantitative_reasoning": {
+      "enabled": true,
+      "time_limit_minutes": 35,
+      "question_count": 37
+    },
+    "writing": {
+      "enabled": true,
+      "time_limit_minutes": 40
+    }
+  },
+  "scoring": {
+    "points_per_correct": 1,
+    "points_per_incorrect": 0,
+    "show_score_after_quiz": true,
+    "track_progress": true
+  },
+  "ui": {
+    "theme": "light",
+    "show_timer": true,
+    "show_question_numbers": true,
+    "allow_review": true
+  }
+}

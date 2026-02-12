@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HunterTestPrep Question Schema",
+  "description": "Schema for storing test questions",
+  "type": "object",
+  "properties": {
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the question"
+          },
+          "section": {
+            "type": "string",
+            "enum": ["reading_comprehension", "mathematics", "quantitative_reasoning", "writing"],
+            "description": "Test section this question belongs to"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["multiple_choice", "quantitative_comparison", "passage_based", "writing_prompt"],
+            "description": "Type of question"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": ["easy", "medium", "hard"],
+            "description": "Difficulty level"
+          },
+          "topic": {
+            "type": "string",
+            "description": "Specific topic or skill tested"
+          },
+          "passage": {
+            "type": "string",
+            "description": "Reading passage (for passage-based questions)"
+          },
+          "question_text": {
+            "type": "string",
+            "description": "The question text"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "enum": ["A", "B", "C", "D", "E"]
+                },
+                "text": {
+                  "type": "string"
+                }
+              },
+              "required": ["label", "text"]
+            },
+            "description": "Answer options"
+          },
+          "correct_answer": {
+            "type": "string",
+            "enum": ["A", "B", "C", "D", "E"],
+            "description": "The correct answer"
+          },
+          "explanation": {
+            "type": "string",
+            "description": "Explanation of the correct answer"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tags for categorization"
+          }
+        },
+        "required": ["id", "section", "type", "question_text"]
+      }
+    }
+  }
+}
